@@ -1,0 +1,262 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  font-family: sans-serif;
+}
+
+.demo {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 20px;
+  margin: 16px 0;
+  height: 37.2px;
+  text-align: center;
+}
+
+.demo__title {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.demo__select {
+  margin: 0 0 5px 0;
+}
+
+.responsive-wrapper.ratio-21x9 {
+  min-width: 1440px;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.responsive-wrapper.ratio-21x9:after {
+  content: "";
+  width: 100%;
+  height: 0;
+  display: block;
+  padding-bottom: 41.5%;
+}
+
+.hero {
+  position: relative;
+  height: auto;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero__content {
+  color: #fff;
+  width: 100%;
+  max-width: 750px;
+  position: absolute;
+  z-index: 20;
+}
+
+.hero__title {
+  font-size: 5rem;
+  margin: 0 0 2.5rem 0;
+  line-height: 1;
+}
+
+.hero__title:first-letter {
+  text-transform: uppercase;
+}
+
+.hero__text {
+  font-size: 1.125rem;
+  line-height: 1.33;
+  margin: 0;
+}
+
+.hero__background {
+  position: relative;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+
+.hero__background iframe {
+  border: none;
+  position: absolute;
+  left: 0;
+  top: -100%;
+  width: 100%;
+  height: 300%;
+}
+
+.hero--has-shadow-bottom-left:before,
+.hero--has-shadow-bottom-right:before,
+.hero--has-shadow-top-left:before,
+.hero--has-shadow-top-right:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+  background-image: linear-gradient(5deg, #0003 0%, #0000 33%), linear-gradient(75deg, #0003 0%, #0000 66%), linear-gradient(18deg, #0000004d 0%, #0000 33%), linear-gradient(15deg, #0006 0%, #0000 66%), linear-gradient(15deg, #00000080, #0000);
+}
+
+.hero--has-shadow-bottom-left:before {
+  transform: scale(1, 1);
+}
+
+.hero--has-shadow-bottom-left .hero__content {
+  bottom: 0;
+  left: 0;
+  text-align: left;
+  padding: 15px 15px 50px 70px;
+}
+
+.hero--has-shadow-bottom-right:before {
+  transform: scale(-1, 1);
+}
+
+.hero--has-shadow-bottom-right .hero__content {
+  bottom: 0;
+  right: 0;
+  text-align: right;
+  padding: 15px 70px 50px 15px;
+}
+
+.hero--has-shadow-top-left:before {
+  transform: scale(1, -1);
+}
+
+.hero--has-shadow-top-left .hero__content {
+  top: 0;
+  left: 0;
+  text-align: left;
+  padding: 50px 15px 15px 70px;
+}
+
+.hero--has-shadow-top-right:before {
+  transform: scale(-1, -1);
+}
+
+.hero--has-shadow-top-right .hero__content {
+  top: 0;
+  right: 0;
+  text-align: right;
+  padding: 50px 70px 15px 15px;
+}
+
+/* crad */
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+:root {
+  --card-height: 65vh;
+  --card-width: calc(var(--card-height) / 1.5);
+}
+
+body {
+  min-height: 100vh;
+  background: #212534;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  box-sizing: border-box;
+}
+
+.card {
+  background: #191c29;
+  width: var(--card-width);
+  height: var(--card-height);
+  padding: 3px;
+  position: relative;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  font-size: 1.5em;
+  color: rgb(88 199 250 / 0%);
+  cursor: pointer;
+  font-family: cursive;
+
+}
+
+.card:hover {
+  color: rgb(88 199 250 / 100%);
+  transition: color 1s;
+}
+
+.card:hover:before,
+.card:hover:after {
+  animation: none;
+  opacity: 0;
+}
+
+.card::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 8px;
+  background-image: linear-gradient(var(--rotate),
+      #5ddcff,
+      #3c67e3 43%,
+      #4e00c2);
+  position: absolute;
+  z-index: -1;
+  top: -1%;
+  left: -2%;
+  animation: spin 2.5s linear infinite;
+}
+
+.card::after {
+  position: absolute;
+  content: "";
+  top: calc(var(--card-height) / 6);
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  transform: scale(0.8);
+  filter: blur(calc(var(--card-height) / 6));
+  background-image: linear-gradient(var(--rotate),
+      #5ddcff,
+      #3c67e3 43%,
+      #4e00c2);
+  opacity: 1;
+  transition: opacity 0.5s;
+  animation: spin 2.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+a {
+  color: #212534;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 2rem;
+}
